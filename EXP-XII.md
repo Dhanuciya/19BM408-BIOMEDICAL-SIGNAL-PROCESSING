@@ -36,45 +36,29 @@ MATLAB provides functions such as findpeaks() that help detect QRS complexes aut
 
 # MATLAB CODE :
 ~~~
-x=[0,0,0,0.5,0.7,0.8,0.7,0.5,0,0,-1,-1.5,1,2,4,6,4,2,1,-1,-2,
-4,0,0,0,0,0.2,0.4,0.8,0,0,0,0,0,0,0,0.5,0.7,0.8,0.7,0.5,0,0,-1,-1.5,1,2,4,6,4,2,1,-1,-2,
-4,0,0,0,0,0.2,0.4,0.8,0,0,0,0,0,0,0,0.5,0.7,0.8,0.7,0.5,0,0,-1,-1.5,1,2,4,6,4,2,1,-1,-2,
-4,0,0,0,0,0.2,0.4,0.8,0,0,0,0,0,0,0,0.5,0.7,0.8,0.7,0.5,0,0,-1,-1.5,1,2,4,6,4,2,1,-1,-2,
-4,0,0,0,0,0.2,0.4,0.8,0,0,0,0,0,0,0,0.5,0.7,0.8,0.7,0.5,0,0,-1,-1.5,1,2,4,6,4,2,1,-1,-2,
-4,0,0,0,0,0.2,0.4,0.8,0,0,0,0,0,0,0,0.5,0.7,0.8,0.7,0.5,0,0,-1,-1.5,1,2,4,6,4,2,1,-1,-2,
-4,0,0,0,0,0.2,0.4,0.8,0,0,0,0]
-subplot(3,2,1);
-plot(x);
-xlabel('time');
-ylabel('amplitude');
-title('ecg');
-e=randn(80,1);
-subplot(3,2,2);
-plot(e);
-xlabel('time');
-ylabel('amplitude');
-title('random noise');
-y=conv(x,e);
-subplot(3,2,3);
-plot(y);
-title('noisy signal');
-29
-h=[1 1 1 1 1 1]/6;
-y1=conv(h,y);
-subplot(3,2,4);
-plot(y1);
-xlabel('time');
-ylabel('amplitude');
-title('fitered output');
-y2=fft(y1);
-subplot(3,2,5);
-plot(y2);
-xlabel('time');
-ylabel('amplitude');
-title('fft for the ecg signal');
+clc;
+clear;
+close all;
+
+load ecgdata.mat
+
+fs = 360;
+t = (0:length(ecg)-1)/fs;
+
+plot(t,ecg);
+hold on
+
+[pks,locs] = findpeaks(ecg,'MinPeakHeight',0.5);
+
+plot(locs/fs,pks,'ro')
+
+xlabel('Time (seconds)');
+ylabel('Amplitude');
+title('ECG Signal with QRS Detection');
+grid on;
 ~~~
 # OUTPUT GRAPH :
-<img width="830" height="462" alt="image" src="https://github.com/user-attachments/assets/8607d7fd-b420-4de3-941f-2a6727bd3959" />
+<img width="1247" height="822" alt="image" src="https://github.com/user-attachments/assets/8f3c6848-65d5-4c1d-bc86-dab178fd8305" />
 
 # RESULT :
 The ECG signal was analyzed and QRS complexes were successfully detected using MATLAB.
