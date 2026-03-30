@@ -31,8 +31,41 @@ brain injuries. MATLAB provides efficient tools for signal visualization and pro
 6.	Display the result
 
 # MAT LAB CODE :
-
+~~~
+x=[0,0.5,1,0,0.5,1,0,0.5,1,0,0.5,1,0,0.5,1,0,0.5,1,0,0.5,1,0,0.5,1,0,0.5,1,0,0.5,1,0,0.5,1,0,0.5,1,0,0.5,1,0,0.5,
+1,0,0.5,1,0,0.5,1,0,0.5,1,0,0.5,1,0,0.5,1,0,0.5,1,0,0.5,1,0,0.5,1,0,0.5,1,0,0.5,1,0,0.5,1,0,0.5,1,0,0.5,1,0,0.5,1,
+0,0.5,1,0,0.5,1,0,0.5,1,0,0.5,1];
+subplot(3,2,1);
+plot(x);
+xlabel('time');
+ylabel('amplitude');title('eeg');
+e=randn(80,1);
+subplot(3,2,2);
+plot(e);
+xlabel('time');
+ylabel('amplitude');
+title('randomnoise');
+y=conv(x,e);
+subplot(3,2,3);
+plot(y);
+title('noisysignal');
+27
+h=[1 1 1 1 1 1]/6;
+y1=conv(h,y);
+subplot(3,2,4);
+plot(y1);
+xlabel('time');
+ylabel('amplitude');
+title('fitered output');
+y2=fft(y1);
+subplot(3,2,5);
+plot(y2);
+xlabel('time');
+ylabel('amplitude');
+title('fft for the eeg signal');
+~~~
 # OUTPUT GRAPH :
+<img width="822" height="457" alt="image" src="https://github.com/user-attachments/assets/0d3370f3-2764-492f-9bd0-8245aef4f4a7" />
 
 # RESULT :
 The EEG signal was successfully analyzed and its waveform was visualized using MATLAB
